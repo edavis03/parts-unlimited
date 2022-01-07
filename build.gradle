@@ -1,0 +1,83 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'mil.army.futures'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+task installFrontend(type: Exec) {
+	inputs.file(file("frontend/yarn.lock"))
+	inputs.file(file("frontend/package.json"))
+	outputs.dir(file("frontend/node_modules"))
+	commandLine("yarn", "--cwd", "frontend", "install")
+}
+
+task buildFrontend(type: Exec) {
+	dependsOn("installFrontend")
+	inputs.dir(file("frontend"))
+	outputs.dir(file("frontend/build"))
+	commandLine("yarn", "--cwd", "frontend", "build")
+}
+
+task copyFrontend(type: Sync) {
+	dependsOn("buildFrontend")
+	from(file("./frontend/build"))
+	into(file("$buildDir/resources/main/static"))
+	doLast {
+		println("copied built frontend to static resources")
+	}
+}
+
+task copyFrontendForIntelliJ(type: Sync) {
+	dependsOn("buildFrontend")
+	from(file("./frontend/build"))
+	into(file("./src/main/resources/static"))
+	doLast {
+		println("copied built frontend to static resources")
+	}
+}
+
+task cleanFrontend(type: Delete) {
+	delete(file("./frontend/build"))
+	delete(file("./src/main/resources/static"))
+}
+
+bootJar {
+	dependsOn(copyFrontend)
+}
+
+bootRun {
+	dependsOn(copyFrontend)
+}
+
+clean {
+	dependsOn(cleanFrontend)
+}
