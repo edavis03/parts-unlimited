@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FormEvent, useEffect, useState } from "react";
+import "./App.css";
+import { createTeam, getTeams } from "./teamsApiClient";
 
 function App() {
+  const [teams, setTeams] = useState<string[]>([]);
+  const [teamName, setTeamName] = useState<string>("");
+
+  const setTeamNameFromInput = (e: FormEvent<HTMLInputElement>) => {
+    setTeamName(e.currentTarget.value);
+  };
+
+  const submitForm = (e: FormEvent) => {
+    e.preventDefault();
+    createTeam(teamName);
+    setTeams(getTeams());
+  };
+
+  useEffect(() => {
+    setTeams(getTeams());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ul>
+        {teams.map((team, i) => (
+          <li key={i}>{team}</li>
+        ))}
+      </ul>
+
+      <form onSubmit={submitForm}>
+        <label>
+          Team Name
+          <input name="team-name" type="text" onChange={setTeamNameFromInput} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
 
