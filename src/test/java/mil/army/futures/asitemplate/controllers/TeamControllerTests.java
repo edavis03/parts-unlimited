@@ -31,10 +31,6 @@ public class TeamControllerTests {
     @MockBean
     private TeamRepository teamRepository;
 
-    @BeforeEach
-    public void beforeEach() {
-        when(teamRepository.findAll()).thenReturn(List.of("first-team-name", "second-team-name"));
-    }
 
     @Test
     public void whenCreatingTeams_delegatesToTeamRepository() throws Exception {
@@ -50,10 +46,13 @@ public class TeamControllerTests {
 
     @Test
     public void whenGettingTeams_delegatesToTeamRepository() throws Exception {
+        when(teamRepository.findAll()).thenReturn(List.of("first-team-name", "second-team-name"));
+
         this.mockMvc.perform(get("/teams")).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("first-team-name")))
                 .andExpect(content().string(containsString("second-team-name")));
+
         verify(teamRepository, times(1)).findAll();
     }
 }
