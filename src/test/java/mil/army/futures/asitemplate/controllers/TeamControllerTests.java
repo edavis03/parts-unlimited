@@ -1,17 +1,9 @@
 package mil.army.futures.asitemplate.controllers;
 
 
-import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import mil.army.futures.asitemplate.Team;
 import mil.army.futures.asitemplate.repositories.TeamRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,6 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
 @AutoConfigureMockMvc
@@ -34,19 +34,19 @@ public class TeamControllerTests {
 
     @Test
     public void whenCreatingTeams_delegatesToTeamRepository() throws Exception {
-        when(teamRepository.save("first-team-name")).thenReturn("first-team-name");
+        when(teamRepository.save(new Team("first-team-name"))).thenReturn(new Team(1L, "first-team-name"));
 
         this.mockMvc.perform(post("/team").contentType(MediaType.TEXT_PLAIN).content("first-team-name"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("first-team-name")));
 
-        verify(teamRepository, times(1)).save("first-team-name");
+        verify(teamRepository, times(1)).save(new Team("first-team-name"));
     }
 
     @Test
     public void whenGettingTeams_delegatesToTeamRepository() throws Exception {
-        when(teamRepository.findAll()).thenReturn(List.of("first-team-name", "second-team-name"));
+        when(teamRepository.findAll()).thenReturn(List.of(new Team(1L, "first-team-name"), new Team(2L, "second-team-name")));
 
         this.mockMvc.perform(get("/teams")).andDo(print())
                 .andExpect(status().isOk())

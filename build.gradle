@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.ResolveMainClassName
+
 plugins {
 	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -70,13 +72,10 @@ task cleanFrontend(type: Delete) {
 	delete(file("./src/main/resources/static"))
 }
 
-bootJar {
+tasks.withType(ResolveMainClassName) {
 	dependsOn(copyFrontend)
 }
 
-bootRun {
-	dependsOn(copyFrontend)
-}
 
 clean {
 	dependsOn(cleanFrontend)
