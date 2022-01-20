@@ -12,12 +12,13 @@ function App() {
 
   const submitForm = (e: FormEvent) => {
     e.preventDefault();
-    createTeam(teamName);
-    setTeams(getTeams());
+    createTeam(teamName).then(() => {
+      getTeams().then(setTeams);
+    });
   };
 
   useEffect(() => {
-    setTeams(getTeams());
+    getTeams().then(setTeams);
   }, []);
 
   return (

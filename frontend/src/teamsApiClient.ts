@@ -1,9 +1,9 @@
-export function createTeam(teamName: string): string {
-  // cal the api, return the result
-  return teamName;
+import axios from "axios";
+
+export async function createTeam(teamName: string): Promise<string> {
+  return (await axios.post<string>("/team", teamName, {headers: {'Content-Type': 'text/plain'}})).data
 }
 
-export function getTeams(): string[] {
-  // cal the api, return the result
-  return [];
+export async function getTeams(): Promise<string[]> {
+  return (await axios.get<string[]>("/teams")).data
 }

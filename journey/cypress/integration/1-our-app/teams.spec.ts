@@ -7,8 +7,8 @@ describe("teams", () => {
 
     it("updates the displayed list of teams", () => {
       cy.visit("http://localhost:3000");
-      addTeam("team-name");
-      cy.findByText("team-name").should("exist");
+      addTeam("our-team-name");
+      cy.findByText("our-team-name").should("exist");
     });
   });
 });
