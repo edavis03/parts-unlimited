@@ -2,7 +2,6 @@ package mil.army.futures.asitemplate.controllers;
 
 
 import mil.army.futures.asitemplate.Team;
-import mil.army.futures.asitemplate.repositories.TeamRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,37 +20,36 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
-@AutoConfigureMockMvc
+@WebMvcTest(TeamController.class)
 class TeamControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private TeamRepository teamRepository;
+    private TeamService teamService;
 
 
     @Test
     void shouldSaveANewTeamWhenANewTeamIsCreated() throws Exception {
-        when(teamRepository.save(new Team("first-team-name"))).thenReturn(new Team(1L, "first-team-name"));
+        when(teamService.createTeam(new Team("first-team-name"))).thenReturn(new Team(1L, "first-team-name"));
 
         this.mockMvc.perform(post("/team").contentType(MediaType.TEXT_PLAIN).content("first-team-name"))
                 .andExpect(status().isCreated())
                 .andExpect(content().string(containsString("first-team-name")));
 
-        verify(teamRepository).save(new Team("first-team-name"));
+        verify(teamService).createTeam(new Team("first-team-name"));
     }
 
     @Test
     void shouldRetrieveAllTeamsWhenGettingTeams() throws Exception {
-        when(teamRepository.findAll()).thenReturn(List.of(new Team(1L, "first-team-name"), new Team(2L, "second-team-name")));
+        when(teamService.getTeams()).thenReturn(List.of(new Team(1L, "first-team-name"), new Team(2L, "second-team-name")));
 
         this.mockMvc.perform(get("/teams"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("first-team-name")))
                 .andExpect(content().string(containsString("second-team-name")));
 
-        verify(teamRepository).findAll();
+        verify(teamService).getTeams();
     }
 }

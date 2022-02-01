@@ -7,26 +7,31 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 public class TeamController {
-    private final TeamRepository teamRepository;
+    private final TeamService teamService;
 
-    TeamController(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
+    TeamController(TeamService teamService) {
+        this.teamService = teamService;
     }
 
     @GetMapping("/teams")
     public @ResponseBody
     List<String> getTeams() {
-        return teamRepository.findAll().stream().map(Team::getName).collect(Collectors.toList());
+        List<String> teamNames = new ArrayList<>();
+        for(Team team: teamService.getTeams()){
+            teamNames.add(team.getName());
+        }
+        return teamNames;
     }
 
     @PostMapping("/team")
     public ResponseEntity<String> createTeam(@RequestBody String teamName) {
-        var savedTeam = teamRepository.save(new Team(teamName));
+        var savedTeam = teamService.createTeam(new Team(teamName));
         URI location = createResourceLocation("/teams",savedTeam.getId());
         return ResponseEntity.created(location).body(savedTeam.getName());
     }
