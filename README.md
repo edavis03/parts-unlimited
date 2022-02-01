@@ -29,3 +29,4 @@ yarn start
 # Todos of Tech Leads
 * Services?
 * Remove streams
+* Do we need to test application context in contextLoads() test?
