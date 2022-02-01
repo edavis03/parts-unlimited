@@ -6,3 +6,4 @@
 
 # TODOS
 * Services?
+* Remove streams
