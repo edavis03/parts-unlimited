@@ -1,7 +1,6 @@
 package mil.army.futures.asitemplate.controllers;
 
 import mil.army.futures.asitemplate.Team;
-import mil.army.futures.asitemplate.repositories.TeamRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -9,7 +8,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class TeamController {

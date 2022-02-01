@@ -1,14 +1,10 @@
 package mil.army.futures.asitemplate.service;
 
 import mil.army.futures.asitemplate.Team;
-import mil.army.futures.asitemplate.controllers.TeamController;
 import mil.army.futures.asitemplate.controllers.TeamService;
 import mil.army.futures.asitemplate.repositories.TeamRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
