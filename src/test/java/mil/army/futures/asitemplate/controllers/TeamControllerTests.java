@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest
 @AutoConfigureMockMvc
-public class TeamControllerTests {
+class TeamControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,26 +33,25 @@ public class TeamControllerTests {
 
 
     @Test
-    public void whenCreatingTeams_delegatesToTeamRepository() throws Exception {
+    void shouldSaveANewTeamWhenANewTeamIsCreated() throws Exception {
         when(teamRepository.save(new Team("first-team-name"))).thenReturn(new Team(1L, "first-team-name"));
 
         this.mockMvc.perform(post("/team").contentType(MediaType.TEXT_PLAIN).content("first-team-name"))
-                .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().string(containsString("first-team-name")));
 
-        verify(teamRepository, times(1)).save(new Team("first-team-name"));
+        verify(teamRepository).save(new Team("first-team-name"));
     }
 
     @Test
-    public void whenGettingTeams_delegatesToTeamRepository() throws Exception {
+    void shouldRetrieveAllTeamsWhenGettingTeams() throws Exception {
         when(teamRepository.findAll()).thenReturn(List.of(new Team(1L, "first-team-name"), new Team(2L, "second-team-name")));
 
-        this.mockMvc.perform(get("/teams")).andDo(print())
+        this.mockMvc.perform(get("/teams"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("first-team-name")))
                 .andExpect(content().string(containsString("second-team-name")));
 
-        verify(teamRepository, times(1)).findAll();
+        verify(teamRepository).findAll();
     }
 }

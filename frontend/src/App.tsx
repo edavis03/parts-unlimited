@@ -2,16 +2,16 @@ import React, { FormEvent, useEffect, useState } from "react";
 import "./App.css";
 import { createTeam, getTeams } from "./teamsApiClient";
 
-function App() {
+const App = () => {
   const [teams, setTeams] = useState<string[]>([]);
   const [teamName, setTeamName] = useState<string>("");
 
-  const setTeamNameFromInput = (e: FormEvent<HTMLInputElement>) => {
-    setTeamName(e.currentTarget.value);
+  const setTeamNameFromInput = (event: FormEvent<HTMLInputElement>) => {
+    setTeamName(event.currentTarget.value);
   };
 
-  const submitForm = (e: FormEvent) => {
-    e.preventDefault();
+  const submitForm = (event: FormEvent) => {
+    event.preventDefault();
     createTeam(teamName).then(() => {
       getTeams().then(setTeams);
     });
@@ -24,8 +24,8 @@ function App() {
   return (
     <>
       <ul>
-        {teams.map((team, i) => (
-          <li key={i}>{team}</li>
+        {teams.map((team, index) => (
+          <li key={index}>{team}</li>
         ))}
       </ul>
 
