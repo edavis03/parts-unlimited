@@ -1,37 +1,37 @@
 import React, { FormEvent, useEffect, useState } from "react";
-import { createTeam, getTeams } from "./teamsApiClient";
+import { createProduct, getProducts } from "./productsApiClient";
 
 const App = () => {
-  const [teams, setTeams] = useState<string[]>([]);
-  const [teamName, setTeamName] = useState<string>("");
+  const [products, setProducts] = useState<string[]>([]);
+  const [productName, setProductName] = useState<string>("");
 
-  const setTeamNameFromInput = (event: FormEvent<HTMLInputElement>) => {
-    setTeamName(event.currentTarget.value);
+  const setProductNameFromInput = (event: FormEvent<HTMLInputElement>) => {
+    setProductName(event.currentTarget.value);
   };
 
   const submitForm = (event: FormEvent) => {
     event.preventDefault();
-    createTeam(teamName).then(() => {
-      getTeams().then(setTeams);
+    createProduct(productName).then(() => {
+      getProducts().then(setProducts);
     });
   };
 
   useEffect(() => {
-    getTeams().then(setTeams);
+    getProducts().then(setProducts);
   }, []);
 
   return (
     <>
       <ul>
-        {teams.map((team, index) => (
-          <li key={index}>{team}</li>
+        {products.map((product, index) => (
+          <li key={index}>{product}</li>
         ))}
       </ul>
 
       <form onSubmit={submitForm}>
         <label>
-          Team Name
-          <input name="team-name" type="text" onChange={setTeamNameFromInput} />
+          Product
+          <input name="product" type="text" onChange={setProductNameFromInput} />
         </label>
         <button type="submit">Submit</button>
       </form>

@@ -1,13 +1,13 @@
-const addTeam = (team: string) => {
-  cy.findByLabelText("Team Name").type(team);
+const addProduct = (product: string) => {
+  cy.findByLabelText("Product").type(product);
   cy.findByRole("button").click();
 }
-describe("teams", () => {
-  describe("when adding a team", () => {
-    it("should display the new team", () => {
+describe("inventory", () => {
+  describe("when adding a product offering", () => {
+    it("should display the new product", () => {
       cy.visit("http://localhost:8080");
-      addTeam("our-team-name");
-      cy.findByText("our-team-name").should("exist");
+      addProduct("shiny-new-product");
+      cy.findByText("shiny-new-product").should("exist");
     });
   });
 });
