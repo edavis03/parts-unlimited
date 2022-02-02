@@ -2,9 +2,9 @@ package mil.army.futures.asitemplate.controllers;
 
 
 import mil.army.futures.asitemplate.Team;
+import mil.army.futures.asitemplate.services.TeamService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -29,12 +29,11 @@ class TeamControllerTests {
     @MockBean
     private TeamService teamService;
 
-
     @Test
     void shouldSaveANewTeamWhenANewTeamIsCreated() throws Exception {
         when(teamService.createTeam(new Team("first-team-name"))).thenReturn(new Team(1L, "first-team-name"));
 
-        this.mockMvc.perform(post("/team").contentType(MediaType.TEXT_PLAIN).content("first-team-name"))
+        this.mockMvc.perform(post("/teams").contentType(MediaType.TEXT_PLAIN).content("first-team-name"))
                 .andExpect(status().isCreated())
                 .andExpect(content().string(containsString("first-team-name")));
 

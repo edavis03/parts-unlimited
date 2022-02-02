@@ -1,4 +1,4 @@
-package mil.army.futures.asitemplate.controllers;
+package mil.army.futures.asitemplate.services;
 
 import lombok.AllArgsConstructor;
 import mil.army.futures.asitemplate.Team;

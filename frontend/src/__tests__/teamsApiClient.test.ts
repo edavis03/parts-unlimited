@@ -19,7 +19,7 @@ describe('teamsApiClient', () => {
                 reqheaders: {
                     'Content-Type': 'text/plain'
                 }
-            }).post('/team', 'my-new-team')
+            }).post('/teams', 'my-new-team')
                 .reply(200, "my-new-team");
 
             const response = await createTeam("my-new-team");

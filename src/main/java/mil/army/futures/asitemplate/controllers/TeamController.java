@@ -1,6 +1,7 @@
 package mil.army.futures.asitemplate.controllers;
 
 import mil.army.futures.asitemplate.Team;
+import mil.army.futures.asitemplate.services.TeamService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,7 +28,7 @@ public class TeamController {
         return teamNames;
     }
 
-    @PostMapping("/team")
+    @PostMapping("/teams")
     public ResponseEntity<String> createTeam(@RequestBody String teamName) {
         var savedTeam = teamService.createTeam(new Team(teamName));
         URI location = createResourceLocation("/teams",savedTeam.getId());

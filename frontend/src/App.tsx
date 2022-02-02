@@ -1,5 +1,4 @@
 import React, { FormEvent, useEffect, useState } from "react";
-import "./App.css";
 import { createTeam, getTeams } from "./teamsApiClient";
 
 const App = () => {

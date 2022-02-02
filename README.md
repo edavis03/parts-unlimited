@@ -1,6 +1,5 @@
 # ASI TEMPLATE
 
-
 ## Running the App Locally
 ### Start backend server
 ```shell script
@@ -10,6 +9,10 @@
 The app will be running locally at [https://localhost:8080](https://localhost:8080).
 
 ### Start frontend development server
+Run `yarn install` from within the frontend directory before booting up the application for the first time.  This will
+pull in all the front end dependencies.
+
+
 For hot reloading of the frontend, run the following command from the `frontend` directory:
 ```shell script
 yarn start
@@ -20,7 +23,7 @@ yarn start
 | :----------------- |:---------------------|
 | Backend | Run `./gradlew test` in the project root directory |
 | Frontend | Run `yarn test` in the `frontend` directory |
-| Journey | Run the application: `./gradlew bootRun` from the top level directory then run `yarn cypress:open` from the `journey` directory.|
+| Journey | Run the application: `./gradlew bootRun` from the top level directory then run `yarn cypress:open` from the `journey` directory. Remember to run `yarn install` from within the journey directory before running the journey tests for the first time.|
 
 
 ## Notes
