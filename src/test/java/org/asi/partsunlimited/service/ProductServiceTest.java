@@ -1,8 +1,8 @@
 package org.asi.partsunlimited.service;
 
 import org.asi.partsunlimited.Product;
-import org.asi.partsunlimited.services.ProductService;
 import org.asi.partsunlimited.repositories.ProductRepository;
+import org.asi.partsunlimited.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +30,7 @@ class ProductServiceTest {
 
     @Test
     void shouldRetrieveAllProducts(){
-        List<Product> expectedProducts = List.of(new Product(1L, "first-product"), new Product(2L, "second-product"));
+        List<Product> expectedProducts = List.of(new Product(1L, "first-product", 0), new Product(2L, "second-product", 0));
         when(productRepository.findAll()).thenReturn(expectedProducts);
 
         List<Product> actualProducts = productService.getProducts();
@@ -39,10 +39,10 @@ class ProductServiceTest {
     }
 
     @Test
-    void shouldCreateANewProduct(){
-        Product productToSave = new Product(1L, "new-product");
+    void shouldCreateANewProductWithQuantityZero(){
+        Product productToSave = new Product("new-product", 0);
 
-        productService.addProduct(productToSave);
+        productService.addProduct("new-product");
 
         verify(productRepository).save(productToSave);
     }

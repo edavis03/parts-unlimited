@@ -13,8 +13,8 @@ public class ProductService {
 
     ProductRepository productRepository;
 
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
+    public Product addProduct(String product) {
+        return productRepository.save(new Product(product, 0));
     }
 
     public List<Product> getProducts() {
