@@ -17,8 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductController.class)
 class ProductControllerTests {
@@ -31,18 +30,19 @@ class ProductControllerTests {
 
     @Test
     void shouldSaveProductWhenANewProductIsAdded() throws Exception {
-        when(productService.addProduct(new Product("some-product"))).thenReturn(new Product(1L, "some-product"));
+        when(productService.addProduct(new Product("some-product"))).thenReturn(new Product(1L, "some-product", 0));
 
         this.mockMvc.perform(post("/products").contentType(MediaType.TEXT_PLAIN).content("some-product"))
                 .andExpect(status().isCreated())
-                .andExpect(content().string(containsString("some-product")));
+                .andExpect(jsonPath("$[0].name").value("some-product"))
+                .andExpect(jsonPath("$[0].quantity").value("0"));
 
         verify(productService).addProduct(new Product("some-product"));
     }
 
     @Test
     void shouldRetrieveAllProductsWhenGettingProducts() throws Exception {
-        when(productService.getProducts()).thenReturn(List.of(new Product(1L, "first-product"), new Product(2L, "second-product")));
+        when(productService.getProducts()).thenReturn(List.of(new Product(1L, "first-product", 0), new Product(2L, "second-product", 1)));
 
         this.mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())

@@ -30,7 +30,7 @@ class ProductServiceTest {
 
     @Test
     void shouldRetrieveAllProducts(){
-        List<Product> expectedProducts = List.of(new Product(1L, "first-product"), new Product(2L, "second-product"));
+        List<Product> expectedProducts = List.of(new Product(1L, "first-product", 0), new Product(2L, "second-product", 0));
         when(productRepository.findAll()).thenReturn(expectedProducts);
 
         List<Product> actualProducts = productService.getProducts();
@@ -40,7 +40,7 @@ class ProductServiceTest {
 
     @Test
     void shouldCreateANewProduct(){
-        Product productToSave = new Product(1L, "new-product");
+        Product productToSave = new Product(1L, "new-product", 0);
 
         productService.addProduct(productToSave);
 

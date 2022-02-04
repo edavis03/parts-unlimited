@@ -38,7 +38,7 @@ describe("inventory", () => {
 
   describe("when I add a new product", () => {
     it("should display the new product", async () => {
-      mockCreateProduct.mockResolvedValueOnce("shiny new product");
+      mockCreateProduct.mockResolvedValueOnce({name: "shiny new product", quantity: 0});
       mockGetProducts.mockResolvedValueOnce([]);
       mockGetProducts.mockResolvedValueOnce([{name: "shiny new product", quantity: 0}]);
 

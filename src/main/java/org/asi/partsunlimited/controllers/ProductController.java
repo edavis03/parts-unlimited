@@ -20,12 +20,8 @@ public class ProductController {
 
     @GetMapping("/products")
     public @ResponseBody
-    List<String> getProducts() {
-        List<String> products = new ArrayList<>();
-        for(Product product : productService.getProducts()){
-            products.add(product.getName());
-        }
-        return products;
+    List<Product> getProducts() {
+        return productService.getProducts();
     }
 
     @PostMapping("/products")

@@ -20,6 +20,8 @@ public class Product {
 
     private String name;
 
+    private Integer quantity;
+
     public Product(String name) {
         this.name = name;
     }
