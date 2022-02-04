@@ -1,8 +1,8 @@
 package org.asi.partsunlimited.service;
 
 import org.asi.partsunlimited.Product;
-import org.asi.partsunlimited.services.ProductService;
 import org.asi.partsunlimited.repositories.ProductRepository;
+import org.asi.partsunlimited.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

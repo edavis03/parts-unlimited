@@ -25,4 +25,9 @@ public class Product {
     public Product(String name) {
         this.name = name;
     }
+
+    public Product(String name, Integer quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
 }

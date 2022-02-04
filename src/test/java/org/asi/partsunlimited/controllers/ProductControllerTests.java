@@ -12,12 +12,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ProductController.class)
 class ProductControllerTests {
@@ -29,25 +29,27 @@ class ProductControllerTests {
     private ProductService productService;
 
     @Test
-    void shouldSaveProductWhenANewProductIsAdded() throws Exception {
-        when(productService.addProduct(new Product("some-product"))).thenReturn(new Product(1L, "some-product", 0));
+    void shouldSaveProductWithQuantityZeroWhenANewProductIsAdded() throws Exception {
+        when(productService.addProduct(new Product("some-product", 0))).thenReturn(new Product(1L, "some-product", 0));
 
         this.mockMvc.perform(post("/products").contentType(MediaType.TEXT_PLAIN).content("some-product"))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$[0].name").value("some-product"))
-                .andExpect(jsonPath("$[0].quantity").value("0"));
-
-        verify(productService).addProduct(new Product("some-product"));
+                .andExpect(jsonPath("$.name").value("some-product"))
+                .andExpect(jsonPath("$.quantity").value("0"));
     }
 
     @Test
     void shouldRetrieveAllProductsWhenGettingProducts() throws Exception {
-        when(productService.getProducts()).thenReturn(List.of(new Product(1L, "first-product", 0), new Product(2L, "second-product", 1)));
+        when(productService.getProducts()).thenReturn(List.of(
+                new Product(1L, "first-product", 0),
+                new Product(2L, "second-product", 1)));
 
         this.mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("first-product")))
-                .andExpect(content().string(containsString("second-product")));
+                .andExpect(jsonPath("$[0].name").value("first-product"))
+                .andExpect(jsonPath("$[0].quantity").value("0"))
+                .andExpect(jsonPath("$[1].name").value("second-product"))
+                .andExpect(jsonPath("$[1].quantity").value("1"));
 
         verify(productService).getProducts();
     }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,10 +24,10 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<String> addProduct(@RequestBody String product) {
-        var savedProduct = productService.addProduct(new Product(product));
+    public ResponseEntity<Product> addProduct(@RequestBody String product) {
+        var savedProduct = productService.addProduct(new Product(product, 0));
         URI location = createResourceLocation("/products",savedProduct.getId());
-        return ResponseEntity.created(location).body(savedProduct.getName());
+        return ResponseEntity.created(location).body(savedProduct);
     }
 
     private URI createResourceLocation(String path, Long resourceId) {
