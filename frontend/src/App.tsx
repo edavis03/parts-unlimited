@@ -1,6 +1,6 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {createProduct, getProducts} from "./productsApiClient";
-import {Container, Grid} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {Product} from "./product";
 
 const App = () => {
@@ -25,8 +25,8 @@ const App = () => {
     return (
         <Container sx={{mx: 1, my: 1}}>
             <h1>Parts Unlimited Inventory</h1>
-            <Grid container>
-                <Grid item xs={8}>
+            <Box display='flex' flexDirection='row'>
+                <Box>
                     <h2>Product</h2>
                     {products.map((product, index) => (
                         <div key={index}>{product.name}</div>
@@ -39,14 +39,14 @@ const App = () => {
                         </label>
                         <button type="submit">Submit</button>
                     </form>
-                </Grid>
-                <Grid item xs={4}>
+                </Box>
+                <Box>
                     <h2>Quantity</h2>
                     {products.map((product, index) => (
                         <div key={index}>{product.quantity}</div>
                     ))}
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
         </Container>
     );
 }
