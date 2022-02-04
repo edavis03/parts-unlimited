@@ -1,10 +1,10 @@
-package mil.army.futures.asitemplate;
+package org.asi.partsunlimited;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AsiTemplateApplicationTests {
+class PartsUnlimitedApplicationTests {
 
 	@Test
 	void contextLoads() {

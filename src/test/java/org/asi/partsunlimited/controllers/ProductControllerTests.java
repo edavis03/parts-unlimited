@@ -1,8 +1,8 @@
-package mil.army.futures.asitemplate.controllers;
+package org.asi.partsunlimited.controllers;
 
 
-import mil.army.futures.asitemplate.Product;
-import mil.army.futures.asitemplate.services.ProductService;
+import org.asi.partsunlimited.Product;
+import org.asi.partsunlimited.services.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

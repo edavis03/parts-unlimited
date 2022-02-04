@@ -1,4 +1,4 @@
-package mil.army.futures.asitemplate;
+package org.asi.partsunlimited;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

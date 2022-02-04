@@ -6,7 +6,7 @@ plugins {
 	id 'java'
 }
 
-group = 'mil.army.futures'
+group = 'org.asi'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 

@@ -1,8 +1,8 @@
-package mil.army.futures.asitemplate.service;
+package org.asi.partsunlimited.service;
 
-import mil.army.futures.asitemplate.Product;
-import mil.army.futures.asitemplate.services.ProductService;
-import mil.army.futures.asitemplate.repositories.ProductRepository;
+import org.asi.partsunlimited.Product;
+import org.asi.partsunlimited.services.ProductService;
+import org.asi.partsunlimited.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

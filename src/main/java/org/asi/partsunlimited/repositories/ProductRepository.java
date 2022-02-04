@@ -1,6 +1,6 @@
-package mil.army.futures.asitemplate.repositories;
+package org.asi.partsunlimited.repositories;
 
-import mil.army.futures.asitemplate.Product;
+import org.asi.partsunlimited.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {

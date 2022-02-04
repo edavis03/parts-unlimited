@@ -1,8 +1,8 @@
-package mil.army.futures.asitemplate.services;
+package org.asi.partsunlimited.services;
 
 import lombok.AllArgsConstructor;
-import mil.army.futures.asitemplate.Product;
-import mil.army.futures.asitemplate.repositories.ProductRepository;
+import org.asi.partsunlimited.Product;
+import org.asi.partsunlimited.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

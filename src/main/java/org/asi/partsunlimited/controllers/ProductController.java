@@ -1,7 +1,7 @@
-package mil.army.futures.asitemplate.controllers;
+package org.asi.partsunlimited.controllers;
 
-import mil.army.futures.asitemplate.Product;
-import mil.army.futures.asitemplate.services.ProductService;
+import org.asi.partsunlimited.Product;
+import org.asi.partsunlimited.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
