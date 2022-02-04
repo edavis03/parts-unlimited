@@ -33,3 +33,4 @@ yarn start
 * Services?
 * Remove streams
 * Do we need to test application context in contextLoads() test?
+* Make it clear that MUI is an available dependency but that the soldiers don't need to use it if they don't want to

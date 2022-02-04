@@ -21,6 +21,8 @@ describe("inventory", () => {
 
       render(<App/>);
 
+      expect(screen.getByText("Parts Unlimited Warehouse")).toBeInTheDocument();
+      expect(screen.getByText("Product")).toBeInTheDocument();
       expect(await screen.findByText("a product")).toBeInTheDocument();
     });
   });
