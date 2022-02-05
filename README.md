@@ -114,7 +114,7 @@ so that store will have more product to sell to their customers than if the orde
 
 #### Acceptance Criteria
 ```
-Given aN in-stock product
+Given an in-stock product
 When I order an amount of that product that is greater than the current inventory
 Then I see that the total inventory for that product becomes zero
 And I see a confirmation of the quantity of product that will be delivered
