@@ -1,5 +1,32 @@
-# ASI Exercise - PARTS UNLIMITED Project
-## Context
+# Developer ASI Solo Exercise  
+## The challenge
+This repository holds everything that you need for your ASI Solo Exercise.
+
+### Logistics
+#### Setup
+* Read this explanation and the user stories for the exercise.
+* Ask questions as a group.
+* Fork this repo to your GitHub account and pull it to your laptop.
+* Build and run the codebase on your laptop with support from a proctor/facilitator.
+* Begin working on the project user stories which are listed below.
+
+#### Rules
+* Work alone, utilize only your own skills, and don't discuss the project with anyone except the proctor.
+* You may use _any_ online resources (GitHub, StackOverflow, your team's codebase, etc.) that don’t directly relate to solving problems in this domain (e.g. don’t google ‘how to implement tic-tac-toe’ if the exercise is a tic-tac-toe game).
+* Work on the project until the end of the day (17:30). Don't work on the exercise after that time or during our 1-hour lunch break.
+* Only your code that has been pushed to GitHub before the end of the day will be considered. You might consider commiting/pushing frequently.
+
+#### Scoring
+It’s up to you to balance feature completion with the quality of your result. It’s okay if you don’t complete all of the stories in the allotted time, but it would be good if you can.  
+These are good things:
+* Completing stories
+* Test suite is comprehensive and understandable
+* Behavior is correct (no significant bugs)
+* Code is readable. Consider naming, size of methods/classes, consistency, and organization.
+* Code is testable and flexible. It should be easy to add new features and refactor.
+* Product is easy to use for the end user. 
+
+## Parts Unlimited Project
 Parts Unlimited, a large automobile parts manufacturer and supplier, needs to manage their inventory and fulfill orders from stores.
 
 Your team is tasked with creating an application that manages warehouse inventory to help Inventory Managers keep track of orders and quantities of available products. The product manager expects you to implement the user stories in the order provided and complete each story before working on the next one.
@@ -136,10 +163,7 @@ You will receive “Spark Plug - Champion Iridium - 9016” x 12.
 The emphasis for the Note can be styled as you see fit.
 ```
 
-
-
-
-
+___
 
 ## Running the App Locally
 ### Start backend server
