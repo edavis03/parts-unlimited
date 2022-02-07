@@ -22,10 +22,6 @@ public class Product {
 
     private Integer quantity;
 
-    public Product(String name) {
-        this.name = name;
-    }
-
     public Product(String name, Integer quantity) {
         this.name = name;
         this.quantity = quantity;
