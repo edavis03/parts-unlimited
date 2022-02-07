@@ -29,8 +29,8 @@ class ProductControllerTests {
     private ProductService productService;
 
     @Test
-    void shouldSaveProductWithQuantityZeroWhenANewProductIsAdded() throws Exception {
-        when(productService.addProduct(new Product("some-product", 0))).thenReturn(new Product(1L, "some-product", 0));
+    void shouldSaveProductWhenANewProductIsAdded() throws Exception {
+        when(productService.addProduct("some-product")).thenReturn(new Product(1L, "some-product", 0));
 
         this.mockMvc.perform(post("/products").contentType(MediaType.TEXT_PLAIN).content("some-product"))
                 .andExpect(status().isCreated())

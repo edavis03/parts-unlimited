@@ -25,7 +25,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<Product> addProduct(@RequestBody String product) {
-        var savedProduct = productService.addProduct(new Product(product, 0));
+        var savedProduct = productService.addProduct(product);
         URI location = createResourceLocation("/products",savedProduct.getId());
         return ResponseEntity.created(location).body(savedProduct);
     }

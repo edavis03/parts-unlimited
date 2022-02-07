@@ -39,10 +39,10 @@ class ProductServiceTest {
     }
 
     @Test
-    void shouldCreateANewProduct(){
-        Product productToSave = new Product(1L, "new-product", 0);
+    void shouldCreateANewProductWithQuantityZero(){
+        Product productToSave = new Product("new-product", 0);
 
-        productService.addProduct(productToSave);
+        productService.addProduct("new-product");
 
         verify(productRepository).save(productToSave);
     }
