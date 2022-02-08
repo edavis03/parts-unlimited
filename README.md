@@ -174,11 +174,19 @@ And I see a notice that the order was partially fulfilled
 **Parts Unlimited Inventory**
 | Product | Quantity |
 | :------ | :------- |
+| Spark Plug - Champion Iridium - 9016 | 6 |
+| Full Synthetic Motor Oil 5W-30 - Mobil 1 Advanced, 1 Quart - 124315 | 0 |  
+
+If the user ordered 12 Spark Plugs, the result would look like this...  
+
+**Parts Unlimited Inventory**
+| Product | Quantity |
+| :------ | :------- |
 | Spark Plug - Champion Iridium - 9016 | 0 |
 | Full Synthetic Motor Oil 5W-30 - Mobil 1 Advanced, 1 Quart - 124315 | 0 |  
 
-You will receive “Spark Plug - Champion Iridium - 9016” x 12.  
-**Note that your order was NOT completely fulfilled. Your delivery will be short 6 items.**
+You will receive “Spark Plug - Champion Iridium - 9016” x 6.  
+**Note that your order was NOT completely fulfilled. Your delivery will be short 6 items.**  
 
 ### Notes
 - The emphasis for the Note can be styled as you see fit.
