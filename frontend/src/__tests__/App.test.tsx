@@ -49,4 +49,16 @@ describe("inventory", () => {
       expect(await screen.findByText("shiny new product")).toBeInTheDocument();
     });
   });
+
+  describe("when I increase a product's quantity", () => {
+    it("should display the updated quantity of the product", async () => {
+      mockGetProducts.mockResolvedValue([{name: "MyPrettyPrettyProduct", quantity: 0}]);
+
+      render(<App/>);
+
+      //TODO: We didn't need the map junk yet to make this test pass! Let's add more!
+      await screen.findByRole("combobox");
+
+    });
+  });
 });
