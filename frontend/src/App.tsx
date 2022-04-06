@@ -6,6 +6,7 @@ import {Product} from "./product";
 const App = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [productName, setProductName] = useState<string>("");
+    const [quantityToAdd, setQuantityToAdd] = useState<number>(0);
 
     const setProductNameFromInput = (event: FormEvent<HTMLInputElement>) => {
         setProductName(event.currentTarget.value);
@@ -37,6 +38,10 @@ const App = () => {
                             Product to add
                             <input name="product" type="text" onChange={setProductNameFromInput}/>
                         </label>
+                        <label>
+                            Quantity to add
+                            <input name="product-quantity" type="number"/>
+                        </label>
                         <button type="submit">Submit</button>
                     </form>
                 </Box>
@@ -47,11 +52,12 @@ const App = () => {
                     ))}
                 </Box>
             </Box>
-            <form>
-                <select>
-
-                </select>
-            </form>
+            <select>
+                {products.map((product, index) => (
+                    <option key={index}>{product.name}</option>
+                ))}
+            </select>
+            <button type="submit">Add Quantity</button>
         </Container>
     );
 }

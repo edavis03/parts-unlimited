@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import {createProduct, getProducts} from "../productsApiClient";
@@ -56,9 +56,17 @@ describe("inventory", () => {
 
       render(<App/>);
 
-      //TODO: We didn't need the map junk yet to make this test pass! Let's add more!
-      await screen.findByRole("combobox");
+      const combobox = await screen.findByRole("combobox");
+      userEvent.selectOptions(combobox, "MyPrettyPrettyProduct");
 
+      const quantityInput = screen.getByLabelText(/quantity to add/i);
+
+      const amountToIncreaseBy= "9000";
+      userEvent.type(quantityInput, amountToIncreaseBy);
+
+      userEvent.click(await screen.findByRole("button", {name: /add quantity/i}));
+
+      expect(await screen.findByText(amountToIncreaseBy)).toBeInTheDocument();
     });
   });
 });
